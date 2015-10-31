@@ -1,8 +1,18 @@
 <?xml version="1.0" ?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema"
-        xmlns:target="http://www.ret.com/feed"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.ret.com/feed"
-        elementFormDefault="qualified">
-    <element name="ret">
-
-    </element>
+        xmlns:target="http://www.ret.com/feed"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified">
+    <xs:element name="ret">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="feeds" type="xs:string">
+                </xs:element>
+                <xs:element name="doc-copyright" type="xs:string">
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="version" type="xs:string" />
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
