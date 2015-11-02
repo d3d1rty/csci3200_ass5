@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+    Richard Davis
+    CSCI 3020 Section W1
+    Fall 2015
+    Assignment 5
+
+    bad_3.xml rules broken
+        2.1. The element feed starts with a required source element. Must appear exactly once. The source of the feed
+        4.1. The element feed-­‐desc contains at least 1 par element. May contain more than one. Represents paragraph(s) of text.
+-->
+<ret 
+    xmlns="http://www.ret.com/feed"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ret.com/feed ret.xsd"
+
+    version="1.0" date="2015-11-01">
+    <feed>
+        <feed-desc>
+            This is the homepage for Jessi Davis, the photographer. She occasionally posts guides and tutorials
+        </feed-desc>
+        <info>
+            <updated>10/17/2015</updated>
+            <copyright>Jessi Davis</copyright>
+            <location>Clarksville, TN</location>
+        </info>
+        <stories>
+            <story updated="true">
+                <title>How to Take a Picture</title>
+                <url>http://www.jessidavis.design/guides#howto-take-a-pic</url>
+                <preview>
+                    <center>It&apos;s just <bold><italic>soooo</italic></bold> easy... <break />right?</center>
+                </preview>
+                <content>
+                    <par>Did you <bold><italic>really</italic></bold> expect this story to have much in it?<break /><center>Just point the camera at something, click, and call it a day already.</center></par>
+                </content>
+                <video>http://www.jessidavis.design/videos#take-a-pic.mp4</video>
+                <publication-date>10/17/2015</publication-date>
+            </story>
+        </stories>
+    </feed>
+    <doc-copyright legal-statement="This feed and its format is copyright RET"></doc-copyright>
+</ret>

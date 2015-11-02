@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+    Richard Davis
+    CSCI 3020 Section W1
+    Fall 2015
+    Assignment 5
+    Programmed on Arch Linux (kernel version 4.1.6-1-ARCH) using Sublime Text 3 (checked with jEdit)
+    This XML schema specifies the language for a news feed site
+-->
+<ret 
+    xmlns="http://www.ret.com/feed"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ret.com/feed ret.xsd"
+
+    version="1.0" date="2015-11-01">
+    <feed>
+        <source>
+            <name>Jessi Davis Photography</name>
+            <url>http://www.jessidavis.design</url>
+        </source>
+        <feed-desc>
+            <par>This is the homepage for Jessi Davis, the photographer. She occasionally posts guides and tutorials</par>
+        </feed-desc>
+        <info>
+            <updated>10/17/2015</updated>
+            <copyright>Jessi Davis</copyright>
+            <location>Clarksville, TN</location>
+        </info>
+        <stories>
+            <story updated="true">
+                <title>How to Take a Picture</title>
+                <url>http://www.jessidavis.design/guides#howto-take-a-pic</url>
+                <preview>
+                    <center>It&apos;s just <bold><italic>soooo</italic></bold> easy... <break />right?</center>
+                </preview>
+                <content>
+                    <par>Did you <bold><italic>really</italic></bold> expect this story to have much in it?<break /><center>Just point the camera at something, click, and call it a day already.</center></par>
+                </content>
+                <video>http://www.jessidavis.design/videos#take-a-pic.mp4</video>
+                <publication-date>10/17/2015</publication-date>
+            </story>
+            <story updated="true">
+                <title>Choosing the Right Location</title>
+                <url>http://www.jessidavis.design/guides#locations</url>
+                <preview>The right location makes the difference with photography</preview>
+                <video>http://www.jessidavis.design/videos#locations.mp4</video>
+                <publication-date>10/17/2015</publication-date>
+            </story>
+            <story updated="true">
+                <title>Best Times to Shoot</title>
+                <url>http://www.jessidavis.design/guides#times</url>
+                <preview>Many people who use natural light are taking pictures during the wrong times of day.</preview>
+                <content>
+                    <par>Many people who use natural light are taking pictures during the wrong times of day. You should try taking shots during the "golden hour." This period of time makes for great shots with a natural golden hue. The time varies depending on your location, so google what times are best in your area.</par>
+                </content>
+                <publication-date>10/17/2015</publication-date>
+            </story>
+        </stories>
+    </feed>
+    <doc-copyright legal-statement="This feed and its format is copyright RET"></doc-copyright>
+</ret>

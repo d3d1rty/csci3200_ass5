@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+    Richard Davis
+    CSCI 3020 Section W1
+    Fall 2015
+    Assignment 5
+    Programmed on Arch Linux (kernel version 4.1.6-1-ARCH) using Sublime Text 3 (checked with jEdit)
+    This XML schema specifies the language for a news feed site
+-->
+<ret 
+    xmlns="http://www.ret.com/feed"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ret.com/feed ret.xsd"
+
+    version="1.0" date="2015-11-01">
+    <feed>
+        <source>
+            <name>Whiny Boiz</name>
+            <url>http://www.whinyboiz.com</url>
+        </source>
+        <feed-desc>
+            <par>Where whiny boiz of all kinds can come and whine about how much people don&apos;t get them.</par>
+        </feed-desc>
+        <info>
+            <updated>10/17/2015</updated>
+            <copyright>WBoiz</copyright>
+            <location>Clarksville, TN</location>
+        </info>
+        <stories>
+            <story updated="true">
+                <title>Why don&apos;t girls get me?</title>
+                <url>http://www.whinyboiz.com/articles#girls</url>
+                <preview>
+                    An analysis why girls just don&apos;t understand me.
+                </preview>
+                <video>http://www.whinyboiz.com/videos#girls.mp4</video>
+                <publication-date>10/17/2015</publication-date>
+            </story>
+        </stories>
+    </feed>
+    <feed>
+        <source>
+            <name>Struhk</name>
+            <url>http://www.struhk.me</url>
+        </source>
+        <feed-desc>
+            <par>This is the homepage for Richard Davis, the crappy web designer. He occasionally posts rants about why people don&apos;t like him.</par>
+        </feed-desc>
+        <info>
+            <updated>10/17/2015</updated>
+            <copyright>Richard Davis</copyright>
+        </info>
+        <stories>
+            <story updated="false">
+                <title>Why?</title>
+                <url>http://www.struhk.me/blog#noonelikesme</url>
+                <preview>
+                    <center>An insightful look into an artist&apos;s mind.</center>
+                </preview>
+                <content>
+                    <par>
+                        <center>Why does noone like me?</center><break />
+                        <bold>Even my dog hates me.</bold><break />
+                        WAAAAAAAAAAAAAAAAAAAAHHH!
+                    </par>
+                </content>
+            </story>
+            <story updated="false">
+                <title>Noone Ever Asked Me Out to the Dance</title>
+                <url>http://www.struhk.me/blog#noonelikesme</url>
+                <preview>
+                    <center>Yeah, so I&apos;m not afraid to admit it.</center>
+                </preview>
+                <content>
+                    <par>
+                        Noone ever asked me out to the dance. Sometimes, when I think about it, it makes me sad. But whatever.
+                    </par>
+                </content>
+            </story>
+        </stories>
+    </feed>
+    <doc-copyright legal-statement="This feed and its format is copyright RET"></doc-copyright>
+</ret>

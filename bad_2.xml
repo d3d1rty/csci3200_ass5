@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+    Richard Davis
+    CSCI 3020 Section W1
+    Fall 2015
+    Assignment 5
+
+    bad_2.xml rules broken
+        6.1. The element story has an enumerated attribute updated that can only have the values true, false, or unknown. The default is true. Represents whether or not the story was updated since the last time the feed was downloaded. 
+        7.1. The element title can contain text
+-->
+<ret 
+    xmlns="http://www.ret.com/feed"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ret.com/feed ret.xsd"
+
+    version="1.0" date="2015-11-1">
+    <feed>
+        <source>
+            <name>Jessi Davis Photography</name>
+            <url>http://www.jessidavis.design</url>
+        </source>
+        <feed-desc>
+            <par>This is the homepage for Jessi Davis, the photographer. She occasionally posts guides and tutorials</par>
+        </feed-desc>
+        <info>
+            <updated>10/17/2015</updated>
+            <copyright>Jessi Davis</copyright>
+            <location>Clarksville, TN</location>
+        </info>
+        <stories>
+            <story updated="whatever">
+                <title><bold><italic>How to Take a Picture</italic></bold></title>
+                <url>http://www.jessidavis.design/guides#howto-take-a-pic</url>
+                <preview>
+                    <center>It&apos;s just <bold><italic>soooo</italic></bold> easy... <break />right?</center>
+                </preview>
+                <content>
+                    <par>Did you <bold><italic>really</italic></bold> expect this story to have much in it?<break /><center>Just point the camera at something, click, and call it a day already.</center></par>
+                </content>
+                <video>http://www.jessidavis.design/videos#take-a-pic.mp4</video>
+                <publication-date>10/17/2015</publication-date>
+            </story>
+        </stories>
+    </feed>
+    <doc-copyright legal-statement="This feed and its format is copyright RET"></doc-copyright>
+</ret>
