@@ -22,7 +22,7 @@
             <par>This is the homepage for Jessi Davis, the photographer. She occasionally posts guides and tutorials</par>
         </feed-desc>
         <info>
-            <updated>10/17/2015</updated>
+            <updated>2015-10-17T16:30:00.000</updated>
             <copyright>Jessi Davis</copyright>
             <location>Clarksville, TN</location>
         </info>
@@ -37,14 +37,14 @@
                     <par>Did you <bold><italic>really</italic></bold> expect this story to have much in it?<break /><center>Just point the camera at something, click, and call it a day already.</center></par>
                 </content>
                 <video>http://www.jessidavis.design/videos#take-a-pic.mp4</video>
-                <publication-date>10/17/2015</publication-date>
+                <publication-date>2015-10-17</publication-date>
             </story>
             <story updated="true">
                 <title>Choosing the Right Location</title>
                 <url>http://www.jessidavis.design/guides#locations</url>
                 <preview>The right location makes the difference with photography</preview>
                 <video>http://www.jessidavis.design/videos#locations.mp4</video>
-                <publication-date>10/17/2015</publication-date>
+                <publication-date>2015-10-17</publication-date>
             </story>
             <story updated="true">
                 <title>Best Times to Shoot</title>
@@ -53,9 +53,9 @@
                 <content>
                     <par>Many people who use natural light are taking pictures during the wrong times of day. You should try taking shots during the "golden hour." This period of time makes for great shots with a natural golden hue. The time varies depending on your location, so google what times are best in your area.</par>
                 </content>
-                <publication-date>10/17/2015</publication-date>
+                <publication-date>2015-10-17</publication-date>
             </story>
         </stories>
     </feed>
-    <doc-copyright legal-statement="This feed and its format is copyright RET"></doc-copyright>
+    <doc-copyright legal-statement="This feed and its format is copyright RET" />
 </ret>
