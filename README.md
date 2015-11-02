@@ -10,9 +10,11 @@ The purpose of the project is to create an XML schema for a fictional news feed 
 ##Compiling
 No compiling necessary; just make sure you have the schema in the same directory of the project and include these attributes in the root element of the XML document you create:
 
-```xmlns="http://www.ret.com/feed"
+```
+xmlns="http://www.ret.com/feed"
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:schemaLocation="http://www.ret.com/feed ret.xsd"```
+xsi:schemaLocation="http://www.ret.com/feed ret.xsd"
+```
 
 ##Dependencies
 
