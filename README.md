@@ -5,12 +5,14 @@ This project is an assignment for CSCI 3200 (XML Processing) course at APSU. Bei
 For reference, I have included the original assignment instructions. 
 
 ##What it Does
-The purpose of the project is to create a DTD for a fictional news feed site. The DTD specifies what elements and attributes make up the XML document and how exactly they are supposed to appear in the document.
+The purpose of the project is to create an XML schema for a fictional news feed site. The schema specifies what elements and attributes make up the XML document and how exactly they are supposed to appear in the document.
 
 ##Compiling
-No compiling necessary; just make sure you have the DTD in the same directory of the project and include this doctype declaration in your XML document:
+No compiling necessary; just make sure you have the schema in the same directory of the project and include these attributes in the root element of the XML document you create:
 
-`<!DOCTYPE ret SYSTEM "ret.dtd">`
+```xmlns="http://www.ret.com/feed"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.ret.com/feed ret.xsd"```
 
 ##Dependencies
 
