@@ -1,18 +1,303 @@
 <?xml version="1.0" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+<xs:schema 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
         targetNamespace="http://www.ret.com/feed"
         xmlns:target="http://www.ret.com/feed"
         elementFormDefault="qualified"
-        attributeFormDefault="unqualified">
-    <xs:element name="ret">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="feeds" type="xs:string">
-                </xs:element>
-                <xs:element name="doc-copyright" type="xs:string">
-                </xs:element>
-            </xs:sequence>
-            <xs:attribute name="version" type="xs:string" />
+        attributeFormDefault="unqualified"
+>
+	<!-- 
+	19.1 The element break is an empty element. Represents a forced line break in text.
+	-->
+        <xs:complexType name="BreakType">
+        	<xs:choice minOccurs="0" maxOccurs="unbounded">
+        		<xs:element name="break" minOccurs="0" maxOccurs="unbounded" >
+				<xs:complexType />
+			</xs:element>
+        	</xs:choice>
         </xs:complexType>
-    </xs:element>
+        <!-- 
+	20.1 The element center can contain any number of text, break elements, bold elements, italic elements. Represents center formatting of text.
+	-->
+        <xs:complexType name="CenterType" mixed="true">
+        	<xs:choice minOccurs="0" maxOccurs="unbounded">
+        		<xs:element name="bold" type="target:BoldType" minOccurs="0" maxOccurs="unbounded" />
+        		<xs:element name="italic" type="target:ItalicType" minOccurs="0" maxOccurs="unbounded" />
+        		<xs:element name="break" type="target:BreakType" minOccurs="0" maxOccurs="unbounded" />
+        	</xs:choice>
+        </xs:complexType>
+        <!-- 
+	21.1 The element bold can contain any number of text, break elements, center elements, italic elements. Represents bold formatting of text.
+	-->
+        <xs:complexType name="BoldType" mixed="true">
+        	<xs:choice minOccurs="0" maxOccurs="unbounded">
+        		<xs:element name="center" type="target:CenterType" minOccurs="0" maxOccurs="unbounded" />
+        		<xs:element name="italic" type="target:ItalicType" minOccurs="0" maxOccurs="unbounded" />
+        		<xs:element name="break" type="target:BreakType" minOccurs="0" maxOccurs="unbounded" />
+        	</xs:choice>
+        </xs:complexType>
+        <!-- 
+	22.1 The element italic can contain any number of text, break elements, bold elements, center elements. Represents italic formatting of text.
+	-->
+        <xs:complexType name="ItalicType" mixed="true">
+        	<xs:choice minOccurs="0" maxOccurs="unbounded">
+        		<xs:element name="bold" type="target:BoldType" minOccurs="0" maxOccurs="unbounded" />
+        		<xs:element name="center" type="target:CenterType" minOccurs="0" maxOccurs="unbounded" />
+        		<xs:element name="break" type="target:BreakType" minOccurs="0" maxOccurs="unbounded" />
+        	</xs:choice>
+        </xs:complexType>
+        <!-- 
+	12.1 The element par can contain any number of text, break elements, bold elements, center elements, italic elements.
+	-->
+	<xs:complexType name="ParagraphType" mixed="true">
+		<xs:choice minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="break" type="target:BreakType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="center" type="target:CenterType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="bold" type="target:BoldType" minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="italic" type="target:ItalicType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:choice>
+	</xs:complexType>
+    	<xs:element name="ret">
+		<xs:complexType>
+			<xs:sequence>
+				<!-- 
+				1.3 The element ret can have 0 or more feed elements
+				-->
+				<xs:element name="feed" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<!-- 
+							2.1 The element feed starts with a required source element. Must appear exactly once. The source of the feed.
+							-->
+							<xs:element name="source" minOccurs="1" maxOccurs="1" >
+								<xs:complexType>
+									<!--
+									3.2.1 These two elements can be in either order, name first or url first.
+									-->
+									<xs:all>
+										<!--
+										3.1 The element source has a required name element. Must appear exactly once.
+										23.1 The element name can only contain text.
+										23.2 Any string is legal
+										23.3 Cannot be empty
+										-->
+										<xs:element name="name" minOccurs="1" maxOccurs="1"  >
+										<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<!--
+										3.2 The element source has a required url element. Must appear exactly once.
+										24.1 The element url must contain a URI
+										24.2 Cannot be empty
+										-->
+										<xs:element name="url" minOccurs="1" maxOccurs="1"  >
+										<xs:simpleType>
+												<xs:restriction base="xs:anyURI">
+													<xs:minLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<!-- 
+							2.2 The element feed's second element feed-desc is optional, but if present, appears no more than once. This is a description of the feed
+								and its source.
+							-->
+							<xs:element name="feed-desc" minOccurs="0" maxOccurs="1" >
+								<xs:complexType>
+									<xs:sequence>
+										<!--
+										4.1 The element feed-desc contains at least one par element. May contain more than one. Represents paragraph(s) of text.
+										-->
+										<xs:element name="par" type="target:ParagraphType" minOccurs="1" maxOccurs="unbounded" />
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<!--
+							2.3 The element feed's third element info is optional, but if present, appears no more than once. This is additional information about the feed.
+							-->
+							<xs:element name="info" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<!-- 
+										13.4.1 These four elements can appear in any order, and all are optional.
+									-->
+									<xs:all>
+										<!-- 
+											13.1 The element info has an optional updated element. If present, appears exactly once. Represents the last day and time
+												the feed was updated on your company's servers.
+											14.1 The element updated must have proper date and time format.
+										-->
+										<xs:element name="updated" type="xs:dateTime" minOccurs="0" maxOccurs="1" />
+										<!-- 
+											13.2 The element info has an optional copyright element. If present, appears exactly once. Represents the copyright holder of the
+												feed data.
+											15.1 The element copyright  can only contain text. Any text is legal.
+											15.1.1 Must not be empty.
+										-->
+										<xs:element name="copyright" minOccurs="0" maxOccurs="1" >
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<!-- 
+											13.3 The element info has an optional location element. If present, appears exactly once. Represents the physical location
+											of the company with the feed.
+											16.1 The element location can only contain text. Any text is legal.
+											16.1.1 Cannot be empty.
+										-->
+										<xs:element name="location" minOccurs="0" maxOccurs="1" >
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:minLength value="1" />
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+										<!-- 
+											13.4 The element info has an optional customer-support element. If present, appears exactly once. Represents the customer support
+												phone number.
+											17.1 The element customer-support  must be a phone numer. The phone number must be in the following format, (123)456-7890,
+												which should follow these rules:
+												17.1.1 An opening parentheses, followed by
+												17.1.2 3 digits, followed by
+												17.1.3 Closing parenthese, followed by
+												17.1.4 3 digits, followed by
+												17.1.5 an optional single dash
+												17.1.6 4 digits
+										-->
+										<xs:element name="customer-support" minOccurs="0" maxOccurs="1" >
+											<xs:simpleType>
+												<xs:restriction base="xs:string">
+													<xs:pattern value="\([0-9]{3}\)[0-9]{3}-?[0-9]{4}"/>
+												</xs:restriction>
+											</xs:simpleType>
+										</xs:element>
+									</xs:all>
+								</xs:complexType>
+							</xs:element>
+							<!--
+							2.4 The element feed's last element is a required stories element. Must appear exactly once. A list of feed stories.
+							-->
+							<xs:element name="stories" minOccurs="1" maxOccurs="1">
+								<xs:complexType>
+									<xs:sequence>
+										<!--
+										5.1 The element stories contains 0 or more story elements.
+										-->
+										<xs:element name="story" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:sequence>
+													<!--
+													6.2 The element story's first element is the title element. Must appear exactly once.
+													-->
+													<xs:element name="title" minOccurs="1" maxOccurs="1" >
+														<xs:simpleType>
+															<!--
+															7.1 The element title can contain text.
+															-->
+															<xs:restriction base="xs:string">
+																<!--
+																7.2 A title contains at least three characters.
+																-->
+																<xs:minLength value="3" />
+																<!--
+																7.3 A title must begin with a capital letter.
+																-->
+																<xs:pattern value="(\s*)?[A-Z](.|\s)+" />
+															</xs:restriction>
+														</xs:simpleType>
+													</xs:element>
+													<!--
+													6.3 The element story's second element is the url element. Must appear exactly once. A link to the story.
+													-->
+													<xs:element name="url" type="xs:anyURI" minOccurs="1" maxOccurs="1" />
+													<!--
+													6.4 The element story's third element is the preview element. Must appear exactly once. A short introduction to
+														the story. Usually, about 1 sentence.
+													8.1 The element preview can contain any number of text, break elements, center elements, bold elements, italic elements.
+													-->
+													<xs:element name="preview" type="target:ParagraphType" minOccurs="1" maxOccurs="1" />
+													<!--
+													6.5 The element story's element content is optional, but if present appears no more than once. The story. Some
+														sites allow story text in feeds, some don't. That is why it is optional.
+													-->
+													<xs:element name="content" minOccurs="0" maxOccurs="1">
+														<xs:complexType>
+															<xs:sequence>
+																<!--
+																9.1 The element content contains 0 or more par elements. This is/are paragraph(s) of text.
+																-->
+																<xs:element name="par" type="target:ParagraphType" minOccurs="0" maxOccurs="unbounded" />
+															</xs:sequence>
+														</xs:complexType>
+													</xs:element>
+													<!--
+													6.6 The element story's element video is optional, but if present, appears no more than once. A link to an optional video.
+													10.1 The element video must contain a URI.
+													10.1.1 This would be a link to a video. The link can be to any place.
+													-->
+													<xs:element name="video" type="xs:anyURI" minOccurs="0" maxOccurs="1" />
+													<!--
+													6.7 The element story's last element publication-date is optional, but if present, appears no more than once and must
+														be the last element. The date the story was published.
+													11.1 The element publication-date's value must have a proper date
+													-->
+													<xs:element name="publication-date" type="xs:date" minOccurs="0" maxOccurs="1" />
+												</xs:sequence>
+												<!--
+												6.1The element story has an enumerated attribute updated that can only have the values true, false, or unknown. 
+													The default is true. Represents whether or not the story was updated since the last time the feed was downloaded.
+												-->
+												<xs:attribute name="updated" default="true">
+													<xs:simpleType>
+														<xs:restriction base="xs:string">
+															<xs:enumeration value="true" />
+															<xs:enumeration value="false" />
+															<xs:enumeration value="unknown" />
+														</xs:restriction>
+													</xs:simpleType>
+												</xs:attribute>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<!-- 
+				1.4 The element ret's last element is a required doc-copyright element. The copyright statement for your company.
+				18.2 The element doc-copyright is an empty element.
+				-->
+				<xs:element name="doc-copyright"  minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:attribute name="legal-statement" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<!--
+									18.1 The element doc-copyright has an attribute legal-statement that must have the value: This feed and its format is copyright RET
+									-->
+									<xs:enumeration value="This feed and its format is copyright RET" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<!-- 
+			1.1 The element ret has an attribute version that must have the value 1.0
+			-->
+			<xs:attribute name="version" type="xs:string" fixed="1.0" use="required" />
+			<!-- 
+			1.2 The element ret has a required attribute date that has the date of the feed.
+				1.2.1 The attribute's value must be in proper date format
+			-->
+			<xs:attribute name="date" type="xs:date" use="required" />
+		</xs:complexType>
+	</xs:element>
 </xs:schema>

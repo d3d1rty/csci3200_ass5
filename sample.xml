@@ -1,5 +1,10 @@
 <?xml version="1.0" ?>
-<ret version="1.0" date="2014-09-20">
+<ret 
+    xmlns="http://www.ret.com/feed"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ret.com/feed ret.xsd"
+
+version="1.0" date="2014-09-20">
 	<feed>
 		<source>
 			<name>Make Blog</name>
